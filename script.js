@@ -131,8 +131,6 @@ const projects = [
   }
 ];
 
-const allProjectImages = [...new Set(projects.flatMap((project) => [project.cover, ...project.images]))];
-
 const grid = document.getElementById("workGrid");
 const filterBar = document.getElementById("filterBar");
 const modal = document.getElementById("projectModal");
@@ -143,10 +141,11 @@ const navLinks = document.getElementById("navLinks");
 const heroSlides = document.querySelectorAll(".hero-slide");
 
 function projectCard(project) {
+  const mobileCover = project.cover.replace(".webp", "-m.webp");
   return `
     <article class="work-card" data-open="${project.id}">
       <div class="work-thumb">
-        <img src="${project.cover}" alt="${project.title}" loading="lazy">
+        <img src="${project.cover}" srcset="${mobileCover} 820w, ${project.cover} 1400w" sizes="(max-width: 560px) 92vw, (max-width: 1024px) 46vw, 31vw" alt="${project.title}" loading="lazy">
       </div>
       <div class="work-info">
         <span class="work-cat">${project.catLabel}</span>
@@ -160,13 +159,17 @@ function projectCard(project) {
 function renderGrid(filter) {
   const list = filter === "all" ? projects : projects.filter((p) => p.cat === filter);
   grid.innerHTML = list.map(projectCard).join("");
+  observeCards();
 }
 
 function openModal(id) {
   const project = projects.find((p) => p.id === id);
   if (!project) return;
   const images = [project.cover, ...project.images]
-    .map((src) => `<img src="${src}" alt="${project.title}" decoding="async"${src.includes("likes-long") || src.includes("class-detail-1") ? ' class="img-narrow"' : ""}>`)
+    .map((src) => {
+      const mobileSrc = src.replace(".webp", "-m.webp");
+      return `<img src="${mobileSrc}" srcset="${mobileSrc} 820w, ${src} 1400w" sizes="(max-width: 760px) 92vw, 1000px" alt="${project.title}" decoding="async"${src.includes("likes-long") || src.includes("class-detail-1") ? ' class="img-narrow"' : ""}>`;
+    })
     .join("");
   modalBody.innerHTML = `
     <div class="modal-head">
@@ -191,6 +194,37 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
+const preloaded = new Set();
+
+function preloadImages(srcs) {
+  srcs.forEach((src) => {
+    if (preloaded.has(src)) return;
+    preloaded.add(src);
+    const deviceSrc = window.innerWidth < 760 ? src.replace(".webp", "-m.webp") : src;
+    const img = new Image();
+    img.src = deviceSrc;
+  });
+}
+
+const cardObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const project = projects.find((p) => p.id === entry.target.dataset.open);
+        if (project) {
+          preloadImages([project.cover, ...project.images]);
+        }
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { rootMargin: "300px" }
+);
+
+function observeCards() {
+  document.querySelectorAll(".work-card").forEach((card) => cardObserver.observe(card));
+}
+
 renderGrid("all");
 
 filterBar.addEventListener("click", (event) => {
@@ -211,6 +245,19 @@ document.addEventListener("click", (event) => {
     closeModal();
   }
 });
+
+document.addEventListener(
+  "pointerdown",
+  (event) => {
+    const card = event.target.closest("[data-open]");
+    if (!card) return;
+    const project = projects.find((p) => p.id === card.dataset.open);
+    if (project) {
+      preloadImages([project.cover, ...project.images]);
+    }
+  },
+  { passive: true }
+);
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
@@ -250,10 +297,16 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
 document.getElementById("year").textContent = new Date().getFullYear();
 
 window.addEventListener("load", () => {
-  allProjectImages.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
+  projects
+    .filter((project) => project.id === "likes" || project.id === "douyin")
+    .forEach((project) => preloadImages([project.cover, ...project.images]));
+  const preloadAll = () =>
+    projects.forEach((project) => preloadImages([project.cover, ...project.images]));
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(preloadAll, { timeout: 2500 });
+  } else {
+    setTimeout(preloadAll, 1000);
+  }
 });
 
 if (heroSlides.length > 1) {

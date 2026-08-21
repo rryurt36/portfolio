@@ -130,6 +130,7 @@ button {
 .hero-slide {
   position: absolute;
   inset: 0;
+  background-image: var(--hero-img);
   background-size: cover;
   background-position: center;
   opacity: 0;
@@ -721,6 +722,10 @@ a.contact-card:hover {
 }
 
 @media (max-width: 760px) {
+  .hero-slide {
+    background-image: var(--hero-img-m);
+  }
+
   .nav-links {
     display: none;
     position: fixed;
