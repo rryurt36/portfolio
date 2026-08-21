@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>李肖松 | LI XIAOSONG 创意视觉设计</title>
+  <meta name="description" content="李肖松的创意视觉设计作品集，涵盖运营设计、AIGC 设计与 IP 设计。">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">LI XIAOSONG<span>李肖松</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#works">作品</a>
+        <a href="#about">关于</a>
+        <a href="#contact">联系</a>
+        <a class="nav-cta" href="assets/resume.pdf" download>下载简历</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-bg">
+      <div class="hero-slide active" style="background-image: url('assets/work/likes-cover.webp')"></div>
+      <div class="hero-slide" style="background-image: url('assets/work/douyin-cover.webp')"></div>
+      <div class="hero-slide" style="background-image: url('assets/work/aigc-cover.webp')"></div>
+      <div class="hero-slide" style="background-image: url('assets/work/baozi-cover.webp')"></div>
+    </div>
+    <div class="hero-inner">
+      <p class="eyebrow">CREATIVE VISUAL DESIGNER</p>
+      <h1>李肖松<span>LI XIAOSONG</span></h1>
+      <p class="hero-desc">创意视觉设计 / 3D 与 AIGC / 全链路落地。从品牌主视觉、活动运营到 IP 设计与虚拟形象，把创意转成真正能落地的视觉。</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#works">查看作品</a>
+        <a class="btn btn-ghost" href="#contact">联系我</a>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">SCROLL</div>
+  </header>
+
+  <main>
+    <section class="section" id="works">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">FEATURED PROJECTS</p>
+            <h2>重点作品</h2>
+          </div>
+          <p class="section-note">运营主视觉 · 商城大促 · 平台挑战赛</p>
+        </div>
+        <div class="featured-grid">
+          <article class="feature-card reveal" data-open="likes">
+            <img src="assets/work/likes-cover.webp" alt="快手点赞挑战赛主视觉">
+            <div class="feature-meta">
+              <span class="feature-tag">快手平台挑战赛</span>
+              <h3>快手点赞挑战赛</h3>
+              <p>高饱和撞色与动态元素，让参与氛围一眼可见。</p>
+            </div>
+          </article>
+          <article class="feature-card reveal" data-open="douyin">
+            <img src="assets/work/douyin-cover.webp" alt="抖音商城好物节主视觉">
+            <div class="feature-meta">
+              <span class="feature-tag">抖音商城大促</span>
+              <h3>抖音商城好物节</h3>
+              <p>节日促销氛围主视觉，强视觉记忆带动点击互动。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-works" id="allWorks">
+      <div class="section-inner">
+        <div class="section-head section-head-works reveal">
+          <div>
+            <p class="kicker">ALL WORKS</p>
+            <h2>全部作品</h2>
+          </div>
+          <div class="filter-bar" id="filterBar" aria-label="作品筛选">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="ops">运营设计</button>
+            <button class="filter-btn" data-filter="aigc">AIGC 设计</button>
+            <button class="filter-btn" data-filter="ip">IP 设计</button>
+          </div>
+        </div>
+        <div class="work-grid" id="workGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">ABOUT</p>
+            <h2>关于我</h2>
+          </div>
+          <p class="section-note">数字媒体艺术 · 2027 届</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <p>我是李肖松，天津师范大学数字媒体艺术专业 2027 届应届生，专注创意视觉设计。熟悉从品牌主视觉、活动运营到 IP 形象与 AIGC 视觉的全链路工作流，能独立完成从创意构思到落地交付。</p>
+            <p class="muted">常用软件</p>
+            <div class="skill-list">
+              <span class="skill-chip">Photoshop</span>
+              <span class="skill-chip">Illustrator</span>
+              <span class="skill-chip">C4D</span>
+              <span class="skill-chip">Figma</span>
+              <span class="skill-chip">AE</span>
+            </div>
+          </div>
+          <div class="about-side reveal">
+            <h3>荣誉与成果</h3>
+            <ul class="honor-list">
+              <li><span class="yr">2024-25</span>校级一等奖学金</li>
+              <li><span class="yr">2025.09</span>大广赛三等奖</li>
+              <li><span class="yr">2025.09</span>天津市大学生艺术与工业设计竞赛三等奖</li>
+              <li><span class="yr">2024-25</span>校级三好学生</li>
+            </ul>
+            <h3>项目经历</h3>
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-yr">2025.06 - 2025.12</div>
+                <h4>士气系列运营视觉设计</h4>
+                <p>独立负责音乐、年度活动、穿搭指南、品牌符号 4 类运营场景视觉，完成 5 套活动主视觉与 10+ 音乐主题 ICON，相关活动参与量较往期提升 15%。</p>
+              </div>
+              <div class="tl-item">
+                <div class="tl-yr">2024.09 - 2024.11</div>
+                <h4>天津狗不理「包仔」IP 设计</h4>
+                <p>主导 IP 形象设定、天津地标场景延展、服装与周边物料设计，输出 8 套 IP 物料，形成完整 IP 视觉体系。</p>
+              </div>
+              <div class="tl-item">
+                <div class="tl-yr">2024.09</div>
+                <h4>地域文化 IP 课程实践</h4>
+                <p>牵头「包仔」IP 课程项目，作品获课程优秀并被纳入校园文创备选方案。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">CONTACT</p>
+            <h2>联系我</h2>
+          </div>
+          <p class="section-note">期待与你的合作</p>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-card reveal" href="mailto:2135734099@qq.com">
+            <span class="label">EMAIL</span>
+            <span class="value">2135734099@qq.com</span>
+          </a>
+          <a class="contact-card reveal" href="tel:+8613473000742">
+            <span class="label">TEL</span>
+            <span class="value">134 7300 0742</span>
+          </a>
+          <div class="contact-card reveal">
+            <span class="label">WECHAT</span>
+            <span class="value">S13473000742</span>
+          </div>
+          <a class="contact-card reveal" href="assets/resume.pdf" download>
+            <span class="label">RESUME</span>
+            <span class="value">下载简历 PDF</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© <span id="year"></span> 李肖松 LI XIAOSONG</span>
+      <a href="#top">返回顶部</a>
+    </div>
+  </footer>
+
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" data-close aria-label="关闭">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
