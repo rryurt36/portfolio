@@ -385,7 +385,7 @@ button {
 .work-thumb {
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #000;
+  background: #17171b;
 }
 
 .work-thumb img {
@@ -680,7 +680,7 @@ a.contact-card:hover {
   height: auto;
   border: 1px solid var(--line);
   border-radius: 6px;
-  background: #000;
+  background: #17171b;
 }
 
 .reveal {

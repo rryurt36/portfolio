@@ -131,6 +131,8 @@ const projects = [
   }
 ];
 
+const allProjectImages = [...new Set(projects.flatMap((project) => [project.cover, ...project.images]))];
+
 const grid = document.getElementById("workGrid");
 const filterBar = document.getElementById("filterBar");
 const modal = document.getElementById("projectModal");
@@ -164,7 +166,7 @@ function openModal(id) {
   const project = projects.find((p) => p.id === id);
   if (!project) return;
   const images = [project.cover, ...project.images]
-    .map((src) => `<img src="${src}" alt="${project.title}">`)
+    .map((src) => `<img src="${src}" alt="${project.title}" decoding="async">`)
     .join("");
   modalBody.innerHTML = `
     <div class="modal-head">
@@ -246,6 +248,13 @@ const revealObserver = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 document.getElementById("year").textContent = new Date().getFullYear();
+
+window.addEventListener("load", () => {
+  allProjectImages.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+});
 
 if (heroSlides.length > 1) {
   let heroIndex = 0;
