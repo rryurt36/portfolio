@@ -1,3 +1,12 @@
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+if (location.hash) {
+  history.replaceState(null, "", location.pathname + location.search);
+}
+document.documentElement.scrollTop = 0;
+document.body.scrollTop = 0;
+
 const projects = [
   {
     id: "likes",
