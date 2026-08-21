@@ -28,7 +28,7 @@ const projects = [
     desc: "以节日促销氛围为核心，为抖音商城「好物节」设计主视觉与活动物料，突出平台调性与大促信息，兼顾移动端传播。",
     tags: ["商城大促", "主视觉", "活动物料"],
     cover: "assets/work/douyin-cover.webp",
-    images: ["assets/work/douyin-detail-1.webp", "assets/work/douyin-banner.webp"]
+    images: ["assets/work/douyin-page.webp"]
   },
   {
     id: "music",
@@ -166,7 +166,7 @@ function openModal(id) {
   const project = projects.find((p) => p.id === id);
   if (!project) return;
   const images = [project.cover, ...project.images]
-    .map((src) => `<img src="${src}" alt="${project.title}" decoding="async">`)
+    .map((src) => `<img src="${src}" alt="${project.title}" decoding="async"${src.includes("likes-long") || src.includes("class-detail-1") ? ' class="img-narrow"' : ""}>`)
     .join("");
   modalBody.innerHTML = `
     <div class="modal-head">

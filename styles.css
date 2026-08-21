@@ -683,6 +683,13 @@ a.contact-card:hover {
   background: #17171b;
 }
 
+.modal-media img.img-narrow {
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(18px);
