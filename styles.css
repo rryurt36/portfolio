@@ -794,12 +794,34 @@ a.contact-card:hover {
   }
 
   .modal-dialog {
-    margin: 2vh 10px;
-    padding: 18px;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    max-height: 100vh;
+    border: none;
+    border-radius: 0;
+  }
+
+  .modal-close {
+    margin: 12px 12px 0 0;
+  }
+
+  .modal-head {
+    padding: 0 18px;
   }
 
   .modal-head h2 {
     font-size: 27px;
+  }
+
+  .modal-media {
+    gap: 0;
+    margin-top: 22px;
+  }
+
+  .modal-media img {
+    border: none;
+    border-radius: 0;
   }
 }
 
