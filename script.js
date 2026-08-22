@@ -168,7 +168,7 @@ function openModal(id) {
   const images = [project.cover, ...project.images]
     .map((src) => {
       const mobileSrc = src.replace(".webp", "-m.webp");
-      return `<img src="${mobileSrc}" srcset="${mobileSrc} 820w, ${src} 1400w" sizes="(max-width: 760px) 92vw, 1000px" alt="${project.title}" decoding="async"${src.includes("likes-long") || src.includes("class-detail-1") ? ' class="img-narrow"' : ""}>`;
+      return `<img src="${mobileSrc}" srcset="${mobileSrc} 820w, ${src} 1400w" sizes="(max-width: 760px) 92vw, 1000px" alt="${project.title}" decoding="async">`;
     })
     .join("");
   modalBody.innerHTML = `
@@ -297,7 +297,16 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
 document.getElementById("year").textContent = new Date().getFullYear();
 
 window.addEventListener("load", () => {
-  projects.forEach((project) => preloadImages([project.cover, ...project.images]));
+  projects
+    .filter((project) => project.id === "likes" || project.id === "douyin")
+    .forEach((project) => preloadImages([project.cover, ...project.images]));
+  const preloadAll = () =>
+    projects.forEach((project) => preloadImages([project.cover, ...project.images]));
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(preloadAll, { timeout: 2500 });
+  } else {
+    setTimeout(preloadAll, 1000);
+  }
 });
 
 if (heroSlides.length > 1) {
