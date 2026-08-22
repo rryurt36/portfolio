@@ -297,16 +297,7 @@ document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el))
 document.getElementById("year").textContent = new Date().getFullYear();
 
 window.addEventListener("load", () => {
-  projects
-    .filter((project) => project.id === "likes" || project.id === "douyin")
-    .forEach((project) => preloadImages([project.cover, ...project.images]));
-  const preloadAll = () =>
-    projects.forEach((project) => preloadImages([project.cover, ...project.images]));
-  if ("requestIdleCallback" in window) {
-    requestIdleCallback(preloadAll, { timeout: 2500 });
-  } else {
-    setTimeout(preloadAll, 1000);
-  }
+  projects.forEach((project) => preloadImages([project.cover, ...project.images]));
 });
 
 if (heroSlides.length > 1) {
